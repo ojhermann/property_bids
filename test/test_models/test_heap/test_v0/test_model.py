@@ -1,6 +1,6 @@
 from typing import Optional
 
-from models.heap.v0.heap import Heap
+from models.heap.v0.model import Heap
 
 
 def create_ascending_list(start: int = 0, end: int = 10) -> list[int]:
