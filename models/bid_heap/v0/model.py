@@ -1,7 +1,7 @@
 from typing import Optional
 
 from models.bid.v0.model import Bid
-from models.bid_heap.v0.heapify_iteratively import heapify
+from models.bid_heap.v0.heapify_iteratively import build_heap
 
 
 class BidHeap:
@@ -14,7 +14,7 @@ class BidHeap:
         return self._size
 
     def _heapify(self) -> None:
-        heapify(self._bids, self._get_size())
+        build_heap(self._bids, self._get_size())
 
     def number_of_bids(self) -> int:
         return self._get_size() - 1

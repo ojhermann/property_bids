@@ -1,7 +1,7 @@
 from models.bid.v0.model import Bid
 
 
-def heapify_inner(
+def heapify(
         bids: list[Bid],
         size: int,
         index: int,
@@ -24,9 +24,9 @@ def heapify_inner(
             index = size
 
 
-def heapify(
+def build_heap(
         bids: list[Bid],
         size: int,
 ) -> None:
     for i in range(size // 2, -1, -1):
-        heapify_inner(bids=bids, size=size, index=i)
+        heapify(bids=bids, size=size, index=i)
