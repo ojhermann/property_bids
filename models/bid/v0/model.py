@@ -16,7 +16,8 @@ class Bid(BaseModel):
 
     amount: int = Field(
         ...,
-        description="Bid amount expressed in the unit denomination of the currency e.g. cents for EUR or USD"
+        description="Bid amount expressed in the unit denomination of the currency e.g. cents for EUR or USD",
+        allow_mutation=False,
     )
 
     auction_id: str = Field(
