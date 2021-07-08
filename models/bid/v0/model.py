@@ -49,7 +49,7 @@ class Bid(BaseModel):
         neither_bid_active: bool = not (self.is_active() or other.is_active())
         is_lower_amount: bool = self.amount < other.amount
         is_equal_amount: bool = self.amount == other.amount
-        is_later_bid: bool = self.made_at < other.made_at
+        is_later_bid: bool = other.made_at < self.made_at
 
         if both_bids_active or neither_bid_active:
             return is_lower_amount or (is_equal_amount and is_later_bid)
