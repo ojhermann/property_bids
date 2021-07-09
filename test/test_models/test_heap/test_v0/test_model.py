@@ -1,3 +1,4 @@
+from random import randint
 from typing import Optional
 
 from models.heap.v0.model import Heap
@@ -55,3 +56,31 @@ def test_insert_and_pop_work():
     assert min_heap.pop() == 0
     assert min_heap.pop() == 5
     assert min_heap.pop() is None
+
+
+def test_random_values_on_min_heap():
+    min_size: int = 0
+    max_size: int = 100
+    for size in range(min_size, max_size + 1):
+        value_list: list[int] = [randint(min_size, max_size) for _ in range(size)]
+        min_heap: Heap = Heap(fnc_child_parent=lambda x, y: x < y, data=value_list)
+        current: Optional[int] = min_heap.pop()
+        subsequent: Optional[int] = min_heap.pop()
+        while current is not None and subsequent is not None:
+            assert current <= subsequent
+            current = subsequent
+            subsequent = min_heap.pop()
+
+
+def test_random_values_on_max_heap():
+    min_size: int = 0
+    max_size: int = 100
+    for size in range(min_size, max_size + 1):
+        value_list: list[int] = [randint(min_size, max_size) for _ in range(size)]
+        min_heap: Heap = Heap(fnc_child_parent=lambda x, y: x > y, data=value_list)
+        current: Optional[int] = min_heap.pop()
+        subsequent: Optional[int] = min_heap.pop()
+        while current is not None and subsequent is not None:
+            assert current >= subsequent
+            current = subsequent
+            subsequent = min_heap.pop()
