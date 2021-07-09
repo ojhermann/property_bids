@@ -39,15 +39,19 @@ class Heap(Generic[T]):
         for i in range(self.size // 2, -1, -1):
             self._heapify(index=i)
 
+    @staticmethod
+    def _get_parent_index(child_index: int) -> int:
+        return (child_index - 1) // 2
+
     def insert(self, value: T) -> None:
         self.data.append(value)
         self.size += 1
         child_index: int = self.size - 1
-        parent_index: int = child_index // 2
+        parent_index: int = self._get_parent_index(child_index)
         while 0 <= parent_index and self.fnc(self.data[child_index], self.data[parent_index]):
             self._swap(parent_index, child_index)
             child_index = parent_index
-            parent_index: int = child_index // 2
+            parent_index: int = self._get_parent_index(child_index)
 
     def pop(self) -> Optional[T]:
         if self.size == 0:

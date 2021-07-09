@@ -70,6 +70,12 @@ class Bid(BaseModel):
     def __gt__(self, other: Bid) -> bool:
         return not self < other and not self == other
 
+    def __le__(self, other: Bid) -> bool:
+        return self < other or self == other
+
+    def __ge__(self, other: Bid) -> bool:
+        return other < self or other == self
+
     def is_active(self) -> bool:
         return self.removed_at is None
 
