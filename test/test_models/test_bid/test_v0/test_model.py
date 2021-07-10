@@ -62,6 +62,14 @@ class TestInitAndAttributes:
         assert bid.removed_at is not None
 
 
+class TestRemove:
+    def test_remove_works(self):
+        bid: Bid = get_bid()
+        assert bid.removed_at is None
+        bid.remove()
+        assert bid.removed_at is not None
+
+
 class TestLessThan:
     def test_active_bids_identical_except_for_amount(self):
         made_at: datetime = datetime.now(tz=timezone.utc)
