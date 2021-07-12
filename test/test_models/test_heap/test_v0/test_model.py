@@ -58,6 +58,48 @@ def test_insert_and_pop_work():
     assert min_heap.pop() is None
 
 
+def test_remove_works_as_pop():
+    data: list[int] = create_descending_list()
+    min_heap: Heap = Heap(fnc_child_parent=lambda x, y: x < y, data=data)
+
+    ascending_list: list[int] = create_ascending_list()
+    for _ in range(10):
+        assert min_heap.pop() == ascending_list.pop(0)
+
+
+def test_remove_works_with_known_values():
+    data: list[int] = create_descending_list()
+    min_heap: Heap = Heap(fnc_child_parent=lambda x, y: x < y, data=data)
+
+    for index in range(5):
+        min_heap.remove(index)
+    assert min_heap.size == 5
+
+    current: Optional[int] = min_heap.pop()
+    subsequent: Optional[int] = min_heap.pop()
+    while current is not None and subsequent is not None:
+        assert current <= subsequent
+        current = subsequent
+        subsequent = min_heap.pop()
+
+
+def test_remove_works_with_random_values():
+    min_size: int = 0
+    max_size: int = 100
+    for size in range(min_size, max_size + 1):
+        value_list: list[int] = [randint(min_size, max_size) for _ in range(size)]
+        min_heap: Heap = Heap(fnc_child_parent=lambda x, y: x < y, data=value_list)
+
+        for index in range(size // 2):
+            min_heap.remove(index=index)
+        current: Optional[int] = min_heap.pop()
+        subsequent: Optional[int] = min_heap.pop()
+        while current is not None and subsequent is not None:
+            assert current <= subsequent
+            current = subsequent
+            subsequent = min_heap.pop()
+
+
 def test_random_values_on_min_heap():
     min_size: int = 0
     max_size: int = 100
