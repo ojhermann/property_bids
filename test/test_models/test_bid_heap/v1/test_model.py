@@ -82,9 +82,9 @@ def test_random_values_on_bid_heap():
                                range(size)]
         bid_heap: BidHeap = BidHeap(reserve_bid=bid_list[0])
         for index, bid in enumerate(bid_list):
+            bid_id: int = bid_heap.insert(bid)
             if index % 2 == 0:
-                bid.remove()
-            bid_heap.insert(bid)
+                assert bid_heap.remove(bid_id)
 
         current: Optional[int] = bid_heap.pop()
         subsequent: Optional[int] = bid_heap.pop()
