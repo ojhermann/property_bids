@@ -11,5 +11,5 @@ allowed_hosts: dict[str, list[str]] = dict(
 )
 
 trusted_host_options: dict[str, list[str]] = dict(
-    allowed_hosts=allowed_hosts[os.getenv("ALLOWED_HOST")],
+    allowed_hosts=allowed_hosts[os.getenv("WHICH_ENV")],
 )

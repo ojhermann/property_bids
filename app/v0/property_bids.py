@@ -2,6 +2,7 @@ from typing import Any
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
 from app.v0.middleware.cors.options import cors_options
@@ -21,7 +22,7 @@ class PropertyBids(FastAPI):
         super().__init__(
             title="Property Bids",
             openapi_tags=tags_metadata,
-            **extra
+            **extra,
         )
         self.set_middleware()
         self.set_routers()
@@ -31,10 +32,13 @@ class PropertyBids(FastAPI):
             TrustedHostMiddleware,
             **trusted_host_options,
         )
+
         self.add_middleware(
             CORSMiddleware,
             **cors_options,
         )
+
+        self.add_middleware(HTTPSRedirectMiddleware)
 
     def set_routers(self):
         self.include_router(check_ok)

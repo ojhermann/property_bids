@@ -10,7 +10,7 @@ allowed_origins: dict[str, list[str]] = dict(
 )
 
 cors_options: dict[str, list[str]] = dict(
-    allow_origins=allowed_origins[os.getenv("ORIGIN")],
+    allow_origins=allowed_origins[os.getenv("WHICH_ENV")],
     allow_credentials=True,
     allow_methods=["GET", "DELETE", "POST"],
     allow_headers=["*"],

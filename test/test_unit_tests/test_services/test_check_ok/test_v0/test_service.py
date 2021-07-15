@@ -14,7 +14,7 @@ from services.check_ok.v0.service import router
 @pytest.mark.asyncio
 async def test_it_works_as_expected():
     app: PropertyBids = PropertyBids()
-    allowed_host: str = allowed_hosts[os.getenv("ALLOWED_HOST")][0]
+    allowed_host: str = allowed_hosts[os.getenv("WHICH_ENV")][0]
     base_url: str = f"https://{allowed_host}"
 
     async with AsyncClient(app=app, base_url=base_url) as ac:
