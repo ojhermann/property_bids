@@ -1,14 +1,3 @@
-from fastapi import FastAPI
+from app.v0.property_bids import PropertyBids
 
-from services.active import *
-
-tags_metadata: list[dict[str, str]] = [
-    CHECK_OK,
-]
-
-app: FastAPI = FastAPI(
-    title="Property Bids",
-    openapi_tags=tags_metadata,
-)
-
-app.include_router(check_ok)
+app: PropertyBids = PropertyBids()
