@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-bogus_test_host: str = "bogus_test_host"
-
 allowed_hosts: dict[str, list[str]] = dict(
     development=["localhost"],
     staging=["staginghost"],

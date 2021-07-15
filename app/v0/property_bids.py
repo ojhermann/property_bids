@@ -14,7 +14,10 @@ tags_metadata: list[dict[str, str]] = [
 
 
 class PropertyBids(FastAPI):
-    def __init__(self, **extra: Any):
+    def __init__(
+            self,
+            **extra: Any,
+    ):
         super().__init__(
             title="Property Bids",
             openapi_tags=tags_metadata,
